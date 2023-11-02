@@ -20,17 +20,17 @@
       <Field name="phone" type="tel" class="form-control" />
       <ErrorMessage name="phone" class="error-feedback" />
     </div>
-    <div class="form-group form-check">
+    <div class="form-group form-check my-2">
       <input name="favorite" type="checkbox" class="form-check-input" />
       <label for="favorite" class="form-check-label">
-        <strong>Liên hệ yêu thích</strong>
+        <i>Liên hệ yêu thích</i>
       </label>
     </div>
     <div class="form-group">
       <button class="btn btn-primary">
         <i class="fa-solid fa-floppy-disk"></i>
 
-        <span class="ms-1">Lưu</span>
+        <span class="ms-2">Lưu</span>
       </button>
     </div>
   </FormContact>

@@ -12,6 +12,7 @@
 <script>
 import ContactForm from '@/components/ContactForm.vue';
 import ContactService from '@/services/contact.service';
+import Swal from 'sweetalert2';
 export default {
   components: {
     ContactForm
@@ -44,20 +45,33 @@ export default {
     async updateContact(data) {
       try {
         await ContactService.update(this.contact._id, data);
-        this.message = 'Liên hệ được cập nhật thành công.';
+        Swal.fire('Good job!', 'Liên hệ được cập nhật thành công', 'success');
       } catch (error) {
         console.log(error);
       }
     },
     async deleteContact() {
-      if (confirm('Bạn muốn xóa Liên hệ này?')) {
-        try {
-          await ContactService.delete(this.contact._id);
-          this.$router.push({ name: 'contactbook' });
-        } catch (error) {
-          console.log(error);
+      Swal.fire({
+        title: 'Bạn có muốn xóa liên hệ này?',
+        showDenyButton: true,
+        showCancelButton: false,
+        confirmButtonText: 'Đồng ý',
+        denyButtonText: `Hủy`
+      }).then(async (result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          try {
+            await ContactService.delete(this.contact._id);
+            this.$router.push({ name: 'contactbook' });
+            this.refreshList();
+          } catch (error) {
+            console.log(error);
+          }
+          Swal.fire('Đã xóa!', '', 'success');
+        } else if (result.isDenied) {
+          Swal.fire('Dữ liệu chưa được thay đổi', '', 'info');
         }
-      }
+      });
     }
   },
   created() {

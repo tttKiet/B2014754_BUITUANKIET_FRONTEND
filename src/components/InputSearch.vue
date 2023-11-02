@@ -24,7 +24,7 @@ export default {
       @input="updateModelValue"
       @keyup.enter="submit"
     />
-    <div class="input-group-append">
+    <div class="input-group-append ms-4">
       <button class="btn btn-outline-secondary" type="button" @click="submit">
         <i class="fas fa-search"></i> Tìm kiếm
       </button>

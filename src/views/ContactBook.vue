@@ -52,6 +52,7 @@ import ContactCard from '@/components/ContactCard.vue';
 import InputSearch from '@/components/InputSearch.vue';
 import ContactList from '@/components/ContactList.vue';
 import ContactService from '@/services/contact.service';
+import Swal from 'sweetalert2';
 export default {
   components: {
     ContactCard,
@@ -105,14 +106,26 @@ export default {
       this.activeIndex = -1;
     },
     async removeAllContacts() {
-      if (confirm('Bạn muốn xóa tất cả Liên hệ?')) {
-        try {
-          await ContactService.deleteAll();
-          this.refreshList();
-        } catch (error) {
-          console.log(error);
+      Swal.fire({
+        title: 'Bạn có muốn xóa tất cả liên hệ?',
+        showDenyButton: true,
+        showCancelButton: false,
+        confirmButtonText: 'Đồng ý',
+        denyButtonText: `Hủy`
+      }).then(async (result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          try {
+            await ContactService.deleteAll();
+            this.refreshList();
+          } catch (error) {
+            console.log(error);
+          }
+          Swal.fire('Đã xóa!', '', 'success');
+        } else if (result.isDenied) {
+          Swal.fire('Dữ liệu chưa được thay đổi', '', 'info');
         }
-      }
+      });
     },
     goToAddContact() {
       console.log('goToAddContact');

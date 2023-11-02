@@ -27,15 +27,15 @@
         class="form-check-input"
         v-model="contactLocal.favorite"
       />
-      <label for="favorite" class="form-check-label">
-        <strong>Liên hệ yêu thích</strong>
+      <label for="favorite" class="form-check-label mb-3">
+        <i>Liên hệ yêu thích</i>
       </label>
     </div>
-    <div class="form-group">
+    <div class="form-group d-flex gap-2">
       <button class="btn btn-primary">
         <i class="fa-solid fa-floppy-disk"></i>
 
-        <span class="ms-1">Lưu</span>
+        <span class="ms-2">Lưu</span>
       </button>
       <button
         v-if="contactLocal._id"
@@ -45,7 +45,7 @@
       >
         <i class="fa-solid fa-trash"></i>
 
-        <span class="ms-1">Xóa</span>
+        <span class="ms-2">Xóa</span>
       </button>
     </div>
   </FormContact>

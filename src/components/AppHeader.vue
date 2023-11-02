@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand navbar-dark bg-dark">
+  <nav class="navbar navbar-expand navbar-dark bg-dark px-4">
     <router-link to="/" class="navbar-brand">Ứng dụng Quản lý danh bạ</router-link>
     <div class="mr-auto navbar-nav">
       <li class="nav-item">

@@ -8,6 +8,7 @@
 <script>
 import ContactService from '@/services/contact.service';
 import ContactFormAdd from '../components/ContactFormAdd.vue';
+import Swal from 'sweetalert2';
 export default {
   components: {
     ContactFormAdd
@@ -21,7 +22,7 @@ export default {
     async createContact(data) {
       try {
         await ContactService.create(data);
-        this.message = 'Thêm liên hệ mới thành công.';
+        Swal.fire('Good job!', 'Thêm liên hệ mới thành công!', 'success');
       } catch (error) {
         console.log(error);
       }
